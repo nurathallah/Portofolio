@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Kreatif - Athallah</title>
+    <style>
+        /* === Variabel Warna & Pengaturan Dasar === */
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: #1e293b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            /* --- Background Gradien Animasi Berjalan --- */
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #0f172a);
+            background-size: 400% 400%;
+            animation: gradientAnimasi 4s ease infinite; /* Durasi 4 detik, bergerak bolak-balik tanpa henti */
+            background-attachment: fixed;
+            
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Keyframes untuk Background Bergerak */
+        @keyframes gradientAnimasi {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* === Navigasi Glassmorphism === */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        /* === Layout Kontainer === */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 20px 60px;
+        }
+
+        /* === Hero Section (TATA LETAK DUA KOLOM) === */
+        #beranda {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .hero-teks {
+            flex: 1;
+        }
+
+        /* TATA LETAK FOTO PROFIL BULAT SEMPURNA */
+        .hero-foto {
+            width: 250px; 
+            height: 250px;
+            overflow: hidden; 
+            border-radius: 50%; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            flex: 0 0 auto;
+            animation: fadeInRight 1s ease-out both;
+        }
+
+        .hero-foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        .gradient-text {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        /* === Efek Mesin Tik === */
+        .efek-ketik-container {
+            font-size: 1.5rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 20px;
+            animation: fadeInLeft 1s ease-out 0.2s both;
+        }
+
+        .kursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--primary);
+            margin-left: 5px;
+            animation: kedip 1s step-end infinite;
+        }
+
+        @keyframes kedip {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            margin-top: 15px;
+            animation: fadeInLeft 1s ease-out 0.3s both;
+        }
+
+        .btn-modern {
+            padding: 12px 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            animation: fadeInLeft 1s ease-out 0.6s both;
+        }
+
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        /* === Media Queries untuk Ponsel (Responsif) === */
+        @media (max-width: 900px) {
+            .gradient-text { font-size: 3rem; }
+            .hero-container { gap: 30px; }
+            .hero-foto { width: 200px; height: 200px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-foto {
+                margin-bottom: 20px;
+                width: 180px; height: 180px;
+            }
+            .hero-teks h1 { font-size: 2.5rem; text-align: center; }
+            .subtitle { margin-left: auto; margin-right: auto; }
+            .efek-ketik-container { font-size: 1.2rem; }
+            .gradient-text, .subtitle, .btn-modern, .hero-foto, .efek-ketik-container {
+                animation: fadeInUp 0.8s ease-out both;
+            }
+        }
+
+        /* === Sections Umum === */
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* === Skills / Keahlian === */
+        .skills-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background: rgba(99, 102, 241, 0.1);
+            color: #c7d2fe;
+            padding: 8px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* === Grid Portofolio & Kartu Proyek === */
+        .grid-proyek {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .kartu-proyek {
+            background: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden; 
+        }
+
+        .kartu-proyek::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: 2;
+        }
+
+        .kartu-proyek:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        .kartu-proyek:hover::before {
+            transform: scaleX(1);
+        }
+
+        .gambar-proyek {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; 
+            display: block;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .konten-proyek {
+            padding: 25px;
+        }
+
+        .konten-proyek h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .konten-proyek p { 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+        }
+
+        .konten-proyek a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .konten-proyek a:hover { 
+            text-decoration: underline; 
+        }
+
+        /* === Footer === */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(0,0,0,0.2);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .sosmed a {
+            color: var(--text-main);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .sosmed a:hover { color: var(--primary); }
+
+        /* === Animasi Scroll Reveal === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === Keyframes (Animasi Umum) === */
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(40px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#beranda">Beranda</a>
+            <a href="#tentang">Tentang</a>
+            <a href="#portofolio">Portofolio</a>
+            <a href="#kontak">Kontak</a>
+        </nav>
+    </header>
+
+    <section id="beranda">
+        <div class="container hero-container">
+            <!-- Kolom Kiri: Teks & Efek Mesin Tik -->
+            <div class="hero-teks">
+                <h1 class="gradient-text">Halo, Saya Athallah</h1>
+                
+                <!-- Elemen efek ketik -->
+                <div class="efek-ketik-container">
+                    <span class="teks-ketik"></span><span class="kursor">&nbsp;</span>
+                </div>
+
+                <p class="subtitle">Saya merancang dan membangun pengalaman digital yang indah, responsif, dan interaktif.</p>
+                <a href="#portofolio" class="btn-modern">Jelajahi Karya Saya</a>
+            </div>
+            
+            <!-- Kolom Kanan: Foto Profil Bulat -->
+            <div class="hero-foto">
+                <img src="/asset/foto.png" alt="Foto Profil Athallah">
+            </div>
+        </div>
+    </section>
+
+    <section id="tentang" class="container reveal">
+        <h2>Tentang Saya</h2>
+        <p style="text-align: center; color: var(--text-muted); max-width: 700px; margin: 0 auto 30px;">
+            Saya seorang siswa SMKIT Ibnul Qayyim Islamic School Makassar, sekarang saya mengambil jurusan RPL(Rekayasa Perangkat Lunak). Dengan perpaduan kreativitas dan logika, saya menerjemahkan ide-ide kompleks menjadi antarmuka yang elegan dan fungsional. Saya selalu mengeksplorasi teknologi terbaru untuk menciptakan solusi yang relevan.
+        </p>
+        
+        <div class="skills-wrapper">
+            <span class="skill-tag">Full Stack Development</span>
+            <span class="skill-tag">UI/UX Design</span>
+            <span class="skill-tag">HTML & CSS</span>
+            <span class="skill-tag">JavaScript Modern</span>
+            <span class="skill-tag">Problem Solving</span>
+        </div>
+    </section>
+
+    <section id="portofolio" class="container reveal">
+        <h2>Proyek Website Pilihan</h2>
+        
+        <div class="grid-proyek">
+            <!-- PROYEK 1 -->
+            <div class="kartu-proyek">
+                <img src="/asset/AMG.png" alt="Tampilan Website 1" class="gambar-proyek">
+                
+                <div class="konten-proyek">
+                    <h3>PT. Aneka Mitra Gas</h3>
+                    <p>adalah platform pemesanan gas yang memudahkan masyarakat dalam membeli gas secara online sekaligus membantu agen gas mengelola dan melayani pesanan dengan lebih cepat, mudah, dan efisien.
+</p>
+                    <a href="https://www.link-ke-website-anda.com" target="_blank" rel="noopener noreferrer">Kunjungi Website &rarr;</a>
+                </div>
+            </div>
+
+            
+
+            <!-- PROYEK 3 -->
+            <div class="kartu-proyek">
+                <img src="/asset/Islamicapps.png" alt="Tampilan Website 3" class="gambar-proyek">
+                
+                <div class="konten-proyek">
+                    <h3>Website Islamic apps</h3>
+                    <p>adalah website yang menyediakan layanan keislaman berupa "jadwal waktu salat" dan "Al-Qur'an digital" dengan tampilan yang sederhana, responsif, dan mudah diakses.</p>
+                    <a href="https://www.link-ke-website-ketiga.com" target="_blank" rel="noopener noreferrer">Kunjungi Website &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="kontak" class="reveal">
+        <h2>Mari Berkolaborasi</h2>
+        <p style="color: var(--text-muted); margin-bottom: 30px;">Siap mewujudkan ide besar Anda selanjutnya?</p>
+        <a href="mailto:emailanda@contoh.com" class="btn-modern" style="display: inline-block; margin-bottom: 40px;">Kirim Pesan</a>
+        
+        <div class="sosmed">
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">GitHub</a>
+            <a href="#" target="_blank">Instagram</a>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #475569;">&copy; 2026 Athallah. Dirancang dengan imajinasi.</p>
+    </footer>
+
+    <!-- JavaScript Gabungan -->
+    <script>
+        // --- 1. Animasi Scroll Reveal ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Memanggil saat pertama kali dimuat
+
+        // --- 2. Efek Mesin Tik ---
+        const teksArray = ["> Full Stack Developer", "> Web Developer", "> UI/UX Enthusiast"];
+        let teksIndex = 0;
+        let karakterIndex = 0;
+        let isMenghapus = false;
+
+        const kecepatanKetik = 100; 
+        const kecepatanHapus = 50;  
+        const jedaKata = 2000;      
+
+        function ketikOtomatis() {
+            const teksSaatIni = teksArray[teksIndex];
+            const elemenTeks = document.querySelector('.teks-ketik');
+
+            if (isMenghapus) {
+                elemenTeks.textContent = teksSaatIni.substring(0, karakterIndex - 1);
+                karakterIndex--;
+            } else {
+                elemenTeks.textContent = teksSaatIni.substring(0, karakterIndex + 1);
+                karakterIndex++;
+            }
+
+            let kecepatan = isMenghapus ? kecepatanHapus : kecepatanKetik;
+
+            if (!isMenghapus && karakterIndex === teksSaatIni.length) {
+                kecepatan = jedaKata;
+                isMenghapus = true;
+            } else if (isMenghapus && karakterIndex === 0) {
+                isMenghapus = false;
+                teksIndex++;
+                if (teksIndex >= teksArray.length) {
+                    teksIndex = 0; 
+                }
+                kecepatan = 500; 
+            }
+
+            setTimeout(ketikOtomatis, kecepatan);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            setTimeout(ketikOtomatis, 1000); 
+        });
+    </script>
+</body>
+</html>
